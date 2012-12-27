@@ -1,0 +1,12 @@
+((synopsis "Utility for creating animations from a series of images")
+ (author "Peter Danenberg")
+ (category graphics)
+ (license "BSD")
+ (depends cock
+          debug
+          format
+          miscmacros
+          shell
+          setup-helper)
+ (test-depends test)
+ (foreign-depends))

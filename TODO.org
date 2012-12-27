@@ -1,0 +1,43 @@
+* DONE Animator
+  CLOSED: [2012-12-27 Thu 09:46]
+  #+BEGIN_SRC scheme :comments both :tangle animation-test.scm :shebang #!/usr/bin/env scheme
+    (use debug
+         files
+         format
+         shell)
+    
+    (define (make-animator #!key
+                           (magnitude 10000)
+                           (frames-per-second 4)
+                           (type "png"))
+      (let ((directory (create-temporary-directory))
+            (current-frame 0)
+            (digits (inexact->exact (ceiling (/ (log magnitude) (log 10))))))
+        (define (next-frame)
+          (let ((frame (make-pathname
+                        directory
+                        (format (format "~~~a,48d" digits) current-frame)
+                        type)))
+            (inc! current-frame)
+            frame))
+        (define (finalize animation)
+          (run (cd ,directory &&
+                   ;; More apropos to use a URL-builder.
+                   mencoder ,(format "mf://~a"
+                                     (make-pathname directory
+                                                    (format "*.~a" type)))
+                   -mf ,(format "type=~a:fps=~a" type frames-per-second)
+                   -ovc lavc
+                   -o ,(if (absolute-pathname? animation)
+                           animation
+                           (make-pathname (current-directory) animation ".avi")))))
+        (values next-frame finalize)))
+    
+    (receive (next-frame finalize)
+      (make-animator type: "jpg")
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (finalize "harro")
+      (run (mplayer -loop 0 harro.avi)))
+  #+END_SRC

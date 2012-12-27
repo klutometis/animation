@@ -1,0 +1,9 @@
+(use setup-helper-mod)
+
+(setup-shared-extension-module
+ 'animation
+ (extension-version "0.1")
+ compile-options: '(-X cock))
+
+(run (cock -o animation-core.scm "||"
+           echo cock-utils not "installed:" not creating documentation))
