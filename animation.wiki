@@ -1,0 +1,63 @@
+== animation
+
+Utility for creating animations from a series of images
+[[toc:]]
+=== {{make-animator}}
+<procedure>(make-animator #!key (magnitude 10000) (frames-per-second 4) (type png)) → Two values: next-frame and finalize</procedure>
+Create an animator, which consists of two values: a frame-creator and a finalizer.
+
+{{Next-frame}} is a niladic function which returns the filename
+of the next frame; {{finalize}} is a monadic function taking the
+basename of the animation (e.g. {{graph}} → {{graph.avi}}).
+; magnitude : Roughly the number of animations one anticipates
+; frames-per-second : Frames per second
+; type : The frame type; one of e.g. "png", "jpg"
+<enscript highlight="scheme">(define (make-animator
+         #!key
+         (magnitude 10000)
+         (frames-per-second 4)
+         (type "png"))
+  (let ((directory (create-temporary-directory))
+        (current-frame 0)
+        (digits (inexact->exact (ceiling (/ (log magnitude) (log 10))))))
+    (define (next-frame)
+      (let ((frame (make-pathname
+                     directory
+                     (format (format "~~~a,48d" digits) current-frame)
+                     type)))
+        (inc! current-frame)
+        frame))
+    (define (finalize animation)
+      (run (cd ,directory
+               &&
+               mencoder
+               ,(format
+                  "mf://~a"
+                  (make-pathname directory (format "*.~a" type)))
+               -mf
+               ,(format "type=~a:fps=~a" type frames-per-second)
+               -ovc
+               lavc
+               -o
+               ,(if (absolute-pathname? animation)
+                  animation
+                  (make-pathname (current-directory) animation ".avi")))))
+    (values next-frame finalize)))
+</enscript>
+==== Examples
+In this hypothetical example, we're running a
+depth-first-search on a graph; outputting an animation frame every step.
+ (receive (next-frame finalize) (make-animator)
+   (let ((graph (make-random-graph)))
+     (call-for-each-frame (depth-first-search graph)
+                          (lambda (graph)
+                            (write-graph-as-png graph (next-frame))))
+     (finalize "graph")))
+=== About this egg
+
+==== Author
+
+[[/users/klutometis|Peter Danenberg]]
+==== Colophon
+
+Documented by [[/egg/cock|cock]].
