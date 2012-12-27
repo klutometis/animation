@@ -17,7 +17,9 @@ basename of the animation (e.g. {{graph}} → {{graph.avi}})."
     (frames-per-second "Frames per second")
     (type "The frame type; one of e.g. \"png\", \"jpg\"")
     (@to "Two values: next-frame and finalize")
-    (@example-no-eval (receive (next-frame finalize)
+    (@example-no-eval "In this hypothetical example, we're running a
+depth-first-search on a graph; outputting an animation frame every step."
+                      (receive (next-frame finalize)
                         (make-animator)
                         (let ((graph (make-random-graph)))
                           (call-for-each-frame (depth-first-search graph)
