@@ -53,3 +53,8 @@ depth-first-search on a graph; outputting an animation frame every step."
                        -ovc lavc
                        -o ,animation))))
     (values next-frame finalize)))
+
+(define (option-string options)
+  (string-join
+   (map (match-lambda ((key . value) (format "~a=~a" key value))) options)
+   ":"))
