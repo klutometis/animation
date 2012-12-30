@@ -7,15 +7,18 @@
 (define (make-animator #!key
                        (magnitude 10000)
                        (frames-per-second 4)
-                       (type "png"))
-
+                       (type "png")
+                       (width 1600)
+                       (height 900))
   @("Create an animator, which consists of two values: a frame-creator and a finalizer."
     "{{Next-frame}} is a niladic function which returns the filename
 of the next frame; {{finalize}} is a monadic function taking the
-basename of the animation (e.g. {{graph}} → {{graph.avi}})."
+name of the resultant animation (e.g. {{graph.avi}})."
     (magnitude "Roughly the number of animations one anticipates")
     (frames-per-second "Frames per second")
     (type "The frame type; one of e.g. \"png\", \"jpg\"")
+    (width "The width of the frame in pixels (#f for no scaling)")
+    (height "The height of the frame (#f for no scaling)")
     (@to "Two values: next-frame and finalize")
     (@example-no-eval "In this hypothetical example, we're running a
 depth-first-search on a graph; outputting an animation frame every step."
@@ -37,14 +40,16 @@ depth-first-search on a graph; outputting an animation frame every step."
         (inc! current-frame)
         frame))
     (define (finalize animation)
-      (run (cd ,directory &&
-               ;; More apropos to use a URL-builder.
-               mencoder ,(format "mf://~a"
-                                 (make-pathname directory
-                                                (format "*.~a" type)))
-               -mf ,(format "type=~a:fps=~a" type frames-per-second)
-               -ovc lavc
-               -o ,(if (absolute-pathname? animation)
-                       animation
-                       (make-pathname (current-directory) animation ".avi")))))
+      (let ((options
+             (option-string (append
+                             `((type . ,type)
+                               (fps . ,frames-per-second))
+                             (if width `((w . ,width)) '())
+                             (if height `((h . ,height)) '())))))
+        (run (mencoder ,(format "mf://~a"
+                                (make-pathname directory
+                                               (format "*.~a" type)))
+                       -mf ,options
+                       -ovc lavc
+                       -o ,animation))))
     (values next-frame finalize)))
