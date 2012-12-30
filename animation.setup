@@ -2,7 +2,7 @@
 
 (setup-shared-extension-module
  'animation
- (extension-version "0.2")
+ (extension-version "0.3")
  compile-options: '(-X cock))
 
 (run (cock -o animation.wiki animation-core.scm "||"
