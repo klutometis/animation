@@ -8,7 +8,7 @@ Create an animator, which consists of two values: a frame-creator and a finalize
 
 {{Next-frame}} is a niladic function which returns the filename
 of the next frame; {{finalize}} is a monadic function taking the
-name of the resultant animation (e.g. {{graph.avi}}).
+name of the resultant animation (e.g. {{"graph.avi"}}).
 ; magnitude : Roughly the number of animations one anticipates
 ; frames-per-second : Frames per second
 ; type : The frame type; one of e.g. "png", "jpg"
