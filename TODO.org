@@ -41,3 +41,20 @@
       (finalize "harro")
       (run (mplayer -loop 0 harro.avi)))
   #+END_SRC
+
+  #+BEGIN_SRC scheme :comments both :tangle test.scm :shebang #!/usr/bin/env chicken-scheme
+    (use animation
+         debug
+         files
+         format
+         shell)
+        
+    (receive (next-frame finalize)
+      (make-animator type: "jpg" width: #f height: #f)
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (run (cp -v ~/doc/img/b/backwards-tits.jpg ,(next-frame)))
+      (finalize "harro.avi")
+      (run (mplayer -loop 0 harro.avi)))
+    
+  #+END_SRC
