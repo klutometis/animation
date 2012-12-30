@@ -5,6 +5,7 @@
  (depends cock
           debug
           format
+          matchable
           miscmacros
           shell
           setup-helper)
