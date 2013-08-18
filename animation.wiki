@@ -64,6 +64,22 @@ depth-first-search on a graph; outputting an animation frame every step.
 ==== Author
 
 [[/users/klutometis|Peter Danenberg]]
+
+==== License
+BSD
+==== Dependencies
+* [[cock]]
+* [[debug]]
+* [[format]]
+* [[matchable]]
+* [[miscmacros]]
+* [[shell]]
+* [[setup-helper]]
+
+==== Versions
+; 0.1 : Initial release
+; 0.2 : Fix cock-invocation.
+; 0.3 : Add width and height.
 ==== Colophon
 
 Documented by [[/egg/cock|cock]].
