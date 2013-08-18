@@ -1,5 +1,8 @@
 ((synopsis "Utility for creating animations from a series of images")
  (author "Peter Danenberg")
+ (email "pcd@roxygen.org")
+ (user "klutometis")
+ (repo "https://github.com/klutometis/animation")
  (category graphics)
  (license "BSD")
  (depends cock

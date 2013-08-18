@@ -64,7 +64,8 @@ depth-first-search on a graph; outputting an animation frame every step.
 ==== Author
 
 [[/users/klutometis|Peter Danenberg]]
-
+==== Repository
+[[https://github.com/klutometis/animation]]
 ==== License
 BSD
 ==== Dependencies

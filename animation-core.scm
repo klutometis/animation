@@ -1,9 +1,3 @@
-@(egg "animation")
-@(description "Utility for creating animations from a series of images")
-@(author "Peter Danenberg")
-@(username "klutometis")
-@(email "pcd@roxygen.org")
-
 (define (make-animator #!key
                        (magnitude 10000)
                        (frames-per-second 4)
