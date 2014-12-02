@@ -1,11 +1,8 @@
-(use setup-helper-mod)
+(use cock setup-helper-mod)
 
 (setup-shared-extension-module
  'animation
- (extension-version "0.3")
+ (extension-version "0.3.1")
  compile-options: '(-X cock))
 
-(handle-exceptions exn
-  (warning "Not generating documentation")
-  (include "setup-helper-cock")
-  (run-cock -o animation.wiki animation-core.scm))
+(run-cock -o animation.wiki animation-core.scm)
