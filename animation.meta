@@ -6,7 +6,6 @@
  (category graphics)
  (license "BSD")
  (depends cock
-          debug
           format
           matchable
           miscmacros
