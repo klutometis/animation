@@ -5,8 +5,8 @@
  (repo "https://github.com/klutometis/animation")
  (category graphics)
  (license "BSD")
- (depends cock
-          format
+ (depends format
+          (hahn "0.9.3")
           matchable
           miscmacros
           shell

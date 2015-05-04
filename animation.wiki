@@ -9,11 +9,11 @@ Create an animator, which consists of two values: a frame-creator and a finalize
 {{Next-frame}} is a niladic function which returns the filename
 of the next frame; {{finalize}} is a monadic function taking the
 name of the resultant animation (e.g. {{"graph.avi"}}).
-; magnitude : Roughly the number of animations one anticipates
-; frames-per-second : Frames per second
-; type : The frame type; one of e.g. "png", "jpg"
-; width : The width of the frame in pixels (#f for no scaling)
-; height : The height of the frame (#f for no scaling)
+; {{magnitude}} : Roughly the number of animations one anticipates
+; {{frames-per-second}} : Frames per second
+; {{type}} : The frame type; one of e.g. "png", "jpg"
+; {{width}} : The width of the frame in pixels (#f for no scaling)
+; {{height}} : The height of the frame (#f for no scaling)
 <enscript highlight="scheme">(define (make-animator
          #!key
          (magnitude 10000)
@@ -69,9 +69,8 @@ depth-first-search on a graph; outputting an animation frame every step.
 ==== License
 BSD
 ==== Dependencies
-* [[cock]]
-* [[debug]]
 * [[format]]
+* [[(hahn 0.9.3)]]
 * [[matchable]]
 * [[miscmacros]]
 * [[shell]]
@@ -81,6 +80,8 @@ BSD
 ; [[https://github.com/klutometis/animation/releases/tag/0.1|0.1]] : Initial release
 ; [[https://github.com/klutometis/animation/releases/tag/0.2|0.2]] : Fix cock-invocation.
 ; [[https://github.com/klutometis/animation/releases/tag/0.3|0.3]] : Add width and height.
+; [[https://github.com/klutometis/animation/releases/tag/0.3.1|0.3.1]] : Remove the dependency on setup-helper-cock.
+; [[https://github.com/klutometis/animation/releases/tag/0.3.2|0.3.2]] : Remove the dependency on debug.
 ==== Colophon
 
-Documented by [[/egg/cock|cock]].
+Documented by [[/egg/hahn|hahn]].

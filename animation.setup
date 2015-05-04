@@ -1,8 +1,8 @@
-(use cock setup-helper-mod)
+(use hahn setup-helper-mod)
 
 (setup-shared-extension-module
  'animation
- (extension-version "0.3.2")
- compile-options: '(-X cock))
+ (extension-version "0.3.3")
+ compile-options: '(-X hahn))
 
-(run-cock -o animation.wiki animation-core.scm)
+(run-hahn -o animation.wiki animation-core.scm)
