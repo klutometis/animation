@@ -70,7 +70,7 @@ depth-first-search on a graph; outputting an animation frame every step.
 BSD
 ==== Dependencies
 * [[format]]
-* [[(hahn 0.9.3)]]
+* [[hahn]]
 * [[matchable]]
 * [[miscmacros]]
 * [[shell]]
@@ -82,6 +82,7 @@ BSD
 ; [[https://github.com/klutometis/animation/releases/tag/0.3|0.3]] : Add width and height.
 ; [[https://github.com/klutometis/animation/releases/tag/0.3.1|0.3.1]] : Remove the dependency on setup-helper-cock.
 ; [[https://github.com/klutometis/animation/releases/tag/0.3.2|0.3.2]] : Remove the dependency on debug.
+; [[https://github.com/klutometis/animation/releases/tag/0.3.3|0.3.3]] : Use hahn.
 ==== Colophon
 
 Documented by [[/egg/hahn|hahn]].
